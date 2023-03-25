@@ -1,32 +1,21 @@
 {
-  "name": "Email - fast gmail inbox cleaning",
-  "version": "1.0.1",
+  "name": "LinkedIn profile to PDF",
+  "version": "1.0.0",
   "manifest_version": 3,
-  "description": "This chrome extension will allow you to fast clean your gmail inbox.",
+  "description": "This extension will help you generate a PDF version of your LinkedIn profile.",
   "homepage_url": "https://www.linkedin.com/in/jbchauvin",
-  "icons": {
-    "16": "icons/logo-16.png",
-    "48": "icons/logo-48.png",
-    "128": "icons/logo-128.png"
-  },
   "default_locale": "en",
   "permissions": [
-    "scripting"
+    "activeTab"
   ],
   "host_permissions": [
-    "https://mail.google.com/",
-    "https://mail.google.com/*"
+    "https://linkedin.com/",
+    "https://linkedin.com/*"
   ],
-  "background": {
-    "service_worker": "src/background.js"
-  },
-  "commands": {
-    "delete-emails": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+D",
-        "mac": "Command+Shift+D"
-      },
-      "description": "Find and delete emails"
+  "content_scripts": [
+    {
+      "matches": ["*://www.linkedin.com/*"],
+      "js": ["src/content.js"]
     }
-  }
+  ]
 }
